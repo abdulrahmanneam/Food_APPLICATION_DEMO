@@ -1,0 +1,125 @@
+﻿@model SalesCartViewModel
+<div class="row checkoutForm">
+    <h2>Your shopping cart</h2>
+    <h4>Here are the drinks in your shopping cart.</h4>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Selected amount</th>
+                <th>Food</th>
+                <th class="text-right">Price</th>
+                <th class="text-right">Subtotal</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var line in Model.SalesCart.AddCartItems)
+            {
+                <tr>
+                    <td class="text-center">@line.amount</td>
+                    <td class="text-left">@line.food.Name</td>
+                    <td class="text-right">@line.food.Price.ToString("c")</td>
+                    <td class="text-right">
+                        @((line.amount * line.food.Price).ToString("c"))
+                    </td>
+                    <td class="text-center">
+                        <a class="glyphicon glyphicon-remove text-danger remove" asp-controller="SalesCart" asp-action="RemoveFromShoppingCart" asp-route-drinkId="@line.food.FoodID"></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right">Total:</td>
+                <td class="text-right">
+                    @Model.salescarttotal.ToString("c")
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="text-right">
+        <div class="btn-group ">
+            <a class="btn btn-success" asp-controller="Order" asp-action="Checkout">Check out</a>
+            <a class="btn-group">
+                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    Add more Food<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a asp-controller="Food" asp-action="List" asp-route-category="Breakfast">all BreakFast Food</a></li>
+                    <li><a asp-controller="Food" asp-action="List" asp-route-category="Launch">all Launch Food</a></li>
+                    <li><a asp-controller="Food" asp-action="List" asp-route-category="Dinner">all Dinner Food</a></li>
+                    <li><a asp-controller="Food" asp-action="List" asp-route-category="Dessert">Dessert all Dessert Food</a></li>
+                    <li><a asp-controller="Food" asp-action="List" asp-route-category="Drinks">all Drinks</a></li>
+                </ul>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- عرض الطعام -->
+<div class="row">
+    @foreach (var item in Model.SalesCart.AddCartItems.Select(i => i.food))
+    {
+        @await Html.PartialAsync("FoodS", item)
+    }
+</div>
+
+
+@* @model SalesCartViewModel
+<div class="row checkoutForm">
+    <h2>Your shopping cart</h2>
+    <h4>Here are the drinks in your shopping cart.</h4>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Selected amount</th>
+                <th>Food</th>
+                <th class="text-right">Price</th>
+                <th class="text-right">Subtotal</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var line in Model.SalesCart.AddCartItems)
+            {
+                <tr>
+                    <td class="text-center">@line.amount</td>
+                    <td class="text-left">@line.food.Name</td>
+                    <td class="text-right">@line.food.Price.ToString("c")</td>
+                    <td class="text-right">
+                        @((line.amount * line.food.Price).ToString("c"))
+                    </td>
+                    <td class="text-center"><a class="glyphicon glyphicon-remove text-danger remove" asp-controller="SalesCart" asp-action="RemoveFromShoppingCart" asp-route-drinkId="@line.food.FoodID"></a></td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right">Total:</td>
+                <td class="text-right">
+                    @Model.salescarttotal.ToString("c")
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="text-right">
+        <div class="btn-group ">
+            <a class="btn btn-success" asp-controller="Order" asp-action="Checkout">Check out</a>
+            <a class="btn-group">
+                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    Add more Food<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a asp-controller="Food" asp-action="List" asp-route-category="Breakfast">all BreakFast Food</a></li>
+                    <li><a asp-controller="Food" asp-action="List" asp-route-category="Launch">all Launch Food</a></li>
+                    <li><a asp-controller="Food" asp-action="List" asp-route-category="Dinner">all Dinner Food</a></li>
+                    <li><a asp-controller="Food" asp-action="List" asp-route-category="Dessert">Dessert	all Dessert Food</a></li>
+                    <li><a asp-controller="Food" asp-action="List" asp-route-category="Drinks">all Drinks</a></li>
+                    
+                </ul>
+            </a>
+        </div>
+    </div>
+</div> *@

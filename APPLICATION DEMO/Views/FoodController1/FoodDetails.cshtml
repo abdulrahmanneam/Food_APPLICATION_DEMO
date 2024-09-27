@@ -1,0 +1,30 @@
+﻿@model APPLICATION_DEMO.DAL.Models.Food
+
+<div class="card shadow-lg border-0 text-center mx-auto" style="max-width: 800px;">
+    <!-- تم زيادة العرض إلى 800px -->
+    <div class="card-header bg-primary text-white">
+        <h4 class="card-title mb-0">@Model.Name</h4>
+    </div>
+
+    <img src="/Images/@Model.imageUrl" class="card-img-top img-fluid p-3" alt="@Model.Name" style="max-height: 400px; object-fit: cover;"> <!-- زيادة ارتفاع الصورة -->
+
+    <div class="card-body">
+        <h5 class="text-muted">Price: <span class="text-dark">@Model.Price$</span></h5>
+        <h6 class="text-muted">
+            Preferred:
+            <span class="badge @((Model.IsPreferredFood ? "bg-success" : "bg-danger"))">
+                @(Model.IsPreferredFood ? "Yes" : "No")
+            </span>
+        </h6>
+        <h6 class="text-muted">
+            Category:
+            <span class="text-dark">@Model.Category?.Name"</span>
+        </h6>
+        <p class="text-secondary mt-3">@Model.SDescription</p>
+        <p class="text-secondary">@Model.LDescription</p>
+    </div>
+
+    <div class="card-footer bg-light">
+        <a href="@Url.Action("Add", "Food")" class="btn btn-outline-primary btn-sm">Go Back</a>
+    </div>
+</div>

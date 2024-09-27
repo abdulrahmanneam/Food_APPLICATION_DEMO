@@ -1,0 +1,32 @@
+﻿@model APPLICATION_DEMO.ViewModels.SalesCartViewModel
+
+@if (Model.SalesCart.AddCartItems.Count > 0)
+{
+    <li>
+        <a asp-controller="SalesCart">
+            <span class="glyphicon glyphicon-shopping-cart"></span>
+            <span id="cart-status">
+                @Model.SalesCart.AddCartItems.Count
+            </span>
+        </a>
+    </li>
+}
+else
+{
+    <li>Your cart is empty.</li>
+}
+
+
+@* @model SalesCartViewModel   
+
+@if (Model.SalesCart.AddCartItems.Count > 0 )
+{
+    <li>
+        <a asp-controller="SalesCart">
+            <span class="glyphicon glyphicon-shopping-cart"></span>
+            <span id="cart-status">
+                @Model.SalesCart.AddCartItems.Count
+            </span>
+        </a>
+    </li>
+} *@

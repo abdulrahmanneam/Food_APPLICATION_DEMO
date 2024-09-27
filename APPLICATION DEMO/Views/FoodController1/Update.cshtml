@@ -1,0 +1,113 @@
+﻿@model APPLICATION_DEMO.ViewModels.FoodListViewModel
+
+
+<div class="row">
+    <div class="col-md-8 mx-auto rounded border p-3">
+        <h2 class="text-center mb-5">Update Food</h2>
+        <form asp-controller="FoodController1" asp-action="Update" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="FoodID" />
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Name</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="Name" />
+                    <span  asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Short Description</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="SDescription" />
+                    <span asp-validation-for="SDescription" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Long Description</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="LDescription" />
+                    <span asp-validation-for="LDescription" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Price</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="Price" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Image URL</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="imageUrl" />
+                    <span asp-validation-for="imageUrl" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Thumbnail Image URL</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="ImageTUrl" />
+                    <span asp-validation-for="ImageTUrl" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Preferred Food</label>
+                <div class="col-sm-8">
+                    <input class="form-check-input" asp-for="IsPreferredFood" />
+                    <span asp-validation-for="IsPreferredFood" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">In Stock</label>
+                <div class="col-sm-8">
+                    <input class="form-check-input" asp-for="inStook" />
+                    <span asp-validation-for="inStook" class="text-danger"></span>
+                </div>
+            </div>
+            <!-- حقل التصنيف -->
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Category</label>
+                <div class="col-sm-8">
+                    @if (ViewBag.Categories != null)
+                    {
+                        <select class="form-select" asp-for="CategoryID">
+                            <option value="">Select a category</option>
+                            @foreach (var Dep in ViewBag.Categories)
+                            {
+                                <option value="@Dep.CategoryID">
+                                    @Dep.Name
+
+                                </option>
+                            }
+                        </select>
+                    }
+                    else
+                    {
+                        <p>No categories available.</p>
+                    }
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="offset-sm-4 col-sm-4 d-grid">
+                    <button type="Update" class="btn btn-primary">Update</button>
+                </div>
+                <div class="col-sm-4 d-grid">
+                    <a class="btn btn-outline-primary" asp-controller="Food" asp-action="Index">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,91 @@
+﻿@* <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Food Store</title>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link href="/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/site.css" rel="stylesheet" />
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">FoodGo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    @await Component.InvokeAsync("CategoryMenu")
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="About" asp-action="Index">About</a>
+                    </li>
+                    <li class="nav-item">
+                        @await Component.InvokeAsync("SalesCartS")
+                        @await Html.PartialAsync("LoginPartial")
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0" asp-controller="Drink" asp-action="Search" method="get">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search for a drink" name="searchString" value="@ViewData["searchString"]" />
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content" style="padding:50px;">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p><a target="_blank" href="https://www.linkedin.com/in/abdulrahman-neam-53a206307">&copy; 2024 - AbdulrhmanNeam</a></p>
+        </footer>
+    </div>
+    @RenderSection("scripts", required: false)
+</body>
+</html> *@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Food Store</title>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link href="/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/site.css" rel="stylesheet" />
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">FoodGo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <ul class="nav navbar-nav">
+                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+
+                        @await Component.InvokeAsync("CategoryMenu")
+                        <li><a asp-controller="FoodController1" asp-action="Add">Product</a></li>
+
+                        <li><a asp-controller="Contact" asp-action="Index">Contact Us</a></li>
+                        @await Component.InvokeAsync("SalesCartS")
+                        @await Html.PartialAsync("LoginPartial")
+                        @RenderSection("Scripts", required: false)
+
+                    </ul>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    @RenderBody()
+</body>
+</html>

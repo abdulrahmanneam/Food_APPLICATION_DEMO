@@ -1,0 +1,21 @@
+﻿@model HomeViewModel
+
+@await Html.PartialAsync("Carousel")
+
+<h2>Preferred Food Of The Week</h2>
+
+
+<h2>Clints Preferences Just For You!</h2>
+
+<div class="row">
+    @foreach (var food in Model.PreferredFood)
+    {
+        @Html.Partial("FoodS",food)
+    }
+
+</div>
+
+
+
+
+

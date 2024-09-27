@@ -1,0 +1,56 @@
+﻿@using APPLICATION_DEMO.ViewModels
+@model FoodListViewModel
+
+
+<div class="container">
+    <h2>All Food Are Shown Here</h2>
+    <h4>@Model.CurrwntCategory</h4>
+    <div class="row">
+        @if (Model != null && Model.foods.Any())
+        {
+            foreach (Food food in Model.foods)
+            {
+                @await Html.PartialAsync("FoodS", food)
+
+
+            }
+        }
+        else
+        {
+            <p>No food available.</p>
+        }
+    </div>
+</div>
+
+
+@* @using APPLICATION_DEMO.ViewModels
+@model FoodListViewModel
+
+
+<div>
+    <h2>ALL Food Are Shown Here</h2>
+</div>
+<h2>@Model.CurrwntCategory</h2>
+
+@if (Model != null && Model.foods.Any())
+{
+    foreach (var food in Model.foods)
+    {<div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <img src="@food.ImageTUrl" alt="" />
+                <div class="caption">
+                    <h3 class="PullRight">@food.Price.ToString("c")</h3>
+                    <h3>
+                        <a>@food.Name</a>
+                    </h3>
+                    <p>@food.SDescription</p>
+                </div>
+        </div>
+    </div>
+    }
+}
+else
+{
+    <p>No food available.</p>
+}
+ *@
